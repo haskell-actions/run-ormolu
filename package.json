@@ -1,0 +1,32 @@
+{
+  "name": "ormolu-action",
+  "version": "1.0.0",
+  "description": "Check formatting of Haskell code with Ormolu.",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "ncc build index.js -o dist",
+    "all": "npm run prepare"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrkkrp/ormolu-action.git"
+  },
+  "keywords": [
+    "foramtter",
+    "haskell"
+  ],
+  "author": "Mark Karpov",
+  "license": "BSD 3 clause",
+  "dependencies": {
+    "@actions/core": "^1.1.0",
+    "@actions/github": "^1.1.0",
+    "@vercel/ncc": "^0.24.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.24.0"
+  },
+  "bugs": {
+    "url": "https://github.com/mrkkrp/ormolu-action/issues"
+  },
+  "homepage": "https://github.com/mrkkrp/ormolu-action#readme"
+}

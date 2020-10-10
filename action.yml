@@ -1,0 +1,10 @@
+name: 'Ormolu'
+description: 'Check formatting of Haskell code with Ormolu'
+inputs:
+  who-to-greet:
+    description: 'Who to greet'
+    required: true
+    default: 'World'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
