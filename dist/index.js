@@ -3,7 +3,13 @@ module.exports =
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 2932:
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5622);
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_0__);
+
 
 const core = __webpack_require__(2186);
 const github = __webpack_require__(5438);
@@ -11,12 +17,13 @@ const tool_cache = __webpack_require__(7784);
 const exec = __webpack_require__(1514);
 const glob = __webpack_require__(8090);
 
-const ormolu_linux_url = 'https://github.com/tweag/ormolu/releases/download/0.1.3.0/ormolu-Linux';
-const ormolu_windows_url = 'https://github.com/tweag/ormolu/releases/download/0.1.3.0/ormolu-Windows';
-const ormolu_macos_url = 'https://github.com/tweag/ormolu/releases/download/0.1.3.0/ormolu-macOS';
-const ormolu_version = '0.1.3.0';
+const ormolu_version = '0.1.4.1';
+const ormolu_linux_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-Linux';
+const ormolu_windows_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-Windows';
+const ormolu_macos_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-macOS';
 
 const input_pattern = core.getInput('pattern');
+const input_follow_symbolic_links = core.getInput('follow-symbolic-links').toUpperCase() !== 'FALSE';
 const input_extra_args = core.getInput('extra-args');
 
 async function run() {
@@ -38,27 +45,38 @@ async function run() {
 
     // Cache ormolu executable
 
-    const ormolu_cached_path = await tool_cache.cacheFile(ormolu_path, 'ormolu', 'ormolu', ormolu_version);
+    const ormolu_cached_dir = await tool_cache.cacheFile(
+        ormolu_path,
+        'ormolu',
+        'ormolu',
+        ormolu_version
+    );
+    const ormolu_cached_path = path__WEBPACK_IMPORTED_MODULE_0__.join(ormolu_cached_dir, 'ormolu');
 
-    // Add ormolu to PATH
+    // Set mode
 
-    core.addPath(ormolu_cached_path);
+    exec.exec('chmod', ['+x', ormolu_cached_path], {silent: true});
 
     // Glob for the files to format
 
-    console.log(`Pattern: ${input_pattern}`);
-
-    const globber = await glob.create(input_pattern);
+    const globber = await glob.create(
+        input_pattern,
+        {
+            followSymbolicLinks: input_follow_symbolic_links
+        }
+    );
     const files = await globber.glob();
 
-    console.log(`Files: ${files}`);
+    // Run ormolu
 
-    // // TODO grep Haskell files and run ormolu
-
-    // // TODO call git to highlight diffs
+    await exec.exec(ormolu_cached_path, ['--version']);
+    await exec.exec(
+        ormolu_cached_path,
+        ['--color', 'always', '--check-idempotence', '--mode', 'check'].concat(files)
+    );
 
   } catch (error) {
-    core.setFailed(error.message);
+    core.setFailed("Ormolu detected unformatted files");
   }
 }
 
@@ -11817,6 +11835,46 @@ module.exports = require("zlib");
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => module['default'] :
+/******/ 				() => module;
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/compat */
 /******/ 	
 /******/ 	__webpack_require__.ab = __dirname + "/";/************************************************************************/

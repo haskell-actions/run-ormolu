@@ -1,15 +1,18 @@
+import * as path from 'path';
+
 const core = require('@actions/core');
 const github = require('@actions/github');
 const tool_cache = require('@actions/tool-cache');
 const exec = require('@actions/exec');
 const glob = require('@actions/glob');
 
-const ormolu_linux_url = 'https://github.com/tweag/ormolu/releases/download/0.1.3.0/ormolu-Linux';
-const ormolu_windows_url = 'https://github.com/tweag/ormolu/releases/download/0.1.3.0/ormolu-Windows';
-const ormolu_macos_url = 'https://github.com/tweag/ormolu/releases/download/0.1.3.0/ormolu-macOS';
-const ormolu_version = '0.1.3.0';
+const ormolu_version = '0.1.4.1';
+const ormolu_linux_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-Linux';
+const ormolu_windows_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-Windows';
+const ormolu_macos_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-macOS';
 
 const input_pattern = core.getInput('pattern');
+const input_follow_symbolic_links = core.getInput('follow-symbolic-links').toUpperCase() !== 'FALSE';
 const input_extra_args = core.getInput('extra-args');
 
 async function run() {
@@ -31,23 +34,38 @@ async function run() {
 
     // Cache ormolu executable
 
-    const ormolu_cached_path = await tool_cache.cacheFile(ormolu_path, 'ormolu', 'ormolu', ormolu_version);
+    const ormolu_cached_dir = await tool_cache.cacheFile(
+        ormolu_path,
+        'ormolu',
+        'ormolu',
+        ormolu_version
+    );
+    const ormolu_cached_path = path.join(ormolu_cached_dir, 'ormolu');
 
-    // Add ormolu to PATH
+    // Set mode
 
-    core.addPath(ormolu_cached_path);
+    exec.exec('chmod', ['+x', ormolu_cached_path], {silent: true});
 
     // Glob for the files to format
 
-    const globber = await glob.create(input_pattern);
+    const globber = await glob.create(
+        input_pattern,
+        {
+            followSymbolicLinks: input_follow_symbolic_links
+        }
+    );
     const files = await globber.glob();
 
-    // // TODO grep Haskell files and run ormolu
+    // Run ormolu
 
-    // // TODO call git to highlight diffs
+    await exec.exec(ormolu_cached_path, ['--version']);
+    await exec.exec(
+        ormolu_cached_path,
+        ['--color', 'always', '--check-idempotence', '--mode', 'check'].concat(files)
+    );
 
   } catch (error) {
-    core.setFailed(error.message);
+    core.setFailed("Ormolu detected unformatted files");
   }
 }
 

@@ -7,8 +7,13 @@ inputs:
       Glob pattern that are used to find source files to format. It is
       possible to specify several patterns by putting each on a new line.
     default: |
-      *.hs
       **/*.hs
+      **/*.hs-boot
+  follow-symbolic-links:
+    required: false
+    description: >
+      Whether to follow symbolic links.
+    default: true
   extra-args:
     required: false
     description: >
