@@ -1,10 +1,18 @@
 name: 'Ormolu'
 description: 'Check formatting of Haskell code with Ormolu'
 inputs:
-  who-to-greet:
-    description: 'Who to greet'
-    required: true
-    default: 'World'
+  pattern:
+    required: false
+    description: >
+      Glob pattern that are used to find source files to format. It is
+      possible to specify several patterns by putting each on a new line.
+    default: |
+      *.hs
+      **/*.hs
+  extra-args:
+    required: false
+    description: >
+      Extra arguments to pass to Ormolu.
 runs:
   using: 'node12'
   main: 'dist/index.js'
