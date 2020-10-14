@@ -1,26 +1,44 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const tool_cache = require('@actions/tool-cache');
+const exec = require('@actions/exec');
 
-// https://github.com/actions/toolkit
+const ormolu_linux_url = 'https://github.com/tweag/ormolu/releases/download/0.1.3.0/ormolu-Linux';
+const ormolu_windows_url = 'https://github.com/tweag/ormolu/releases/download/0.1.3.0/ormolu-Windows';
+const ormolu_macos_url = 'https://github.com/tweag/ormolu/releases/download/0.1.3.0/ormolu-macOS';
 
-// 1. download ormolu executable using @actions/tool-cache perhaps
-// https://github.com/tweag/ormolu/releases/download/0.1.3.0/ormolu-Linux
-// https://github.com/tweag/ormolu/releases/download/0.1.3.0/ormolu-macOS
-// https://github.com/tweag/ormolu/releases/download/0.1.3.0/ormolu-Windows
+async function run() {
+  try {
 
-// 2. grep Haskell files and run ormolu
+    // Download ormolu executable
 
-// 3. call git to highlight diffs
+    let ormolu_path;
 
-try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
-  const time = (new Date()).toTimeString();
-  core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
-} catch (error) {
-  core.setFailed(error.message);
+    if (process.platform === 'win32') {
+        ormolu_path = await tool_cache.downloadTool(ormolu_windows_url);
+    }
+    else if (process.platform === 'darwin') {
+        ormolu_path = await tool_cache.downloadTool(ormolu_macos_url);
+    }
+    else {
+        ormolu_path = await tool_cache.downloadTool(ormolu_linux_url);
+    }
+
+    // Cache ormolu executable
+
+    const ormolu_cached_path = await tool_cache.cacheFile(ormolu_path);
+
+    // Add ormolu to PATH
+
+    core.addPath(ormolu_cached_path);
+
+    // TODO grep Haskell files and run ormolu
+
+    // TODO call git to highlight diffs
+
+  } catch (error) {
+    core.setFailed(error.message);
+  }
 }
+
+run();

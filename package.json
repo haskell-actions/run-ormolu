@@ -18,8 +18,10 @@
   "author": "Mark Karpov",
   "license": "BSD 3 clause",
   "dependencies": {
-    "@actions/core": "^1.1.0",
-    "@actions/github": "^1.1.0",
+    "@actions/core": "^1.2.6",
+    "@actions/exec": "^1.0.4",
+    "@actions/github": "^4.0.0",
+    "@actions/tool-cache": "^1.6.0",
     "@vercel/ncc": "^0.24.1"
   },
   "devDependencies": {
