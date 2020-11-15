@@ -1,4 +1,4 @@
-name: 'Ormolu'
+name: 'ormolu-action'
 description: 'Check formatting of Haskell code with Ormolu'
 inputs:
   pattern:
