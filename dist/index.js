@@ -67,12 +67,22 @@ async function run() {
     );
     const files = await globber.glob();
 
+    // Extra args
+
+    var extra_args = [];
+
+    if (input_extra_args) {
+        extra_args = input_extra_args.split(' ');
+    }
+
     // Run ormolu
 
     await exec.exec(ormolu_cached_path, ['--version']);
     await exec.exec(
         ormolu_cached_path,
-        ['--color', 'always', '--check-idempotence', '--mode', 'check'].concat(files)
+        ['--color', 'always', '--check-idempotence', '--mode', 'check']
+            .concat(extra_args)
+            .concat(files)
     );
 
   } catch (error) {
