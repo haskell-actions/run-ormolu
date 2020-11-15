@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: mrkkrp/ormolu-action@master
+      - uses: mrkkrp/ormolu-action@v1
   build:
     runs-on: ubuntu-latest
     needs: ormolu
