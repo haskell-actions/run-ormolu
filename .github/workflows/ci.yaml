@@ -8,8 +8,11 @@ on:
       - opened
       - synchronize
 jobs:
-  test-linux:
-    runs-on: ubuntu-latest
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
       - uses: mrkkrp/ormolu-action@master
