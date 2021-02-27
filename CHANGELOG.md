@@ -1,3 +1,8 @@
+## Ormolu action v2
+
+* Fixed the issue with the action hanging when the glob patterns match no
+  files. [Issue 3](https://github.com/mrkkrp/ormolu-action/issues/3).
+
 ## Ormolu action v1
 
 * Initial release.
