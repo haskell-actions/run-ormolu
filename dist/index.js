@@ -78,12 +78,18 @@ async function run() {
     // Run ormolu
 
     await exec.exec(ormolu_cached_path, ['--version']);
-    await exec.exec(
-        ormolu_cached_path,
-        ['--color', 'always', '--check-idempotence', '--mode', 'check']
-            .concat(extra_args)
-            .concat(files)
-    );
+
+    if (files.length > 0) {
+        await exec.exec(
+            ormolu_cached_path,
+            ['--color', 'always', '--check-idempotence', '--mode', 'check']
+                .concat(extra_args)
+                .concat(files)
+        );
+    }
+    else {
+        core.warning("The glob patterns did not match any source files");
+    }
 
   } catch (error) {
     core.setFailed("Ormolu detected unformatted files");
