@@ -17,7 +17,7 @@ formatted with [Ormolu][ormolu].
 In the simple case all you need to do is to add this step to your job:
 
 ```yaml
-- uses: mrkkrp/ormolu-action@v1
+- uses: mrkkrp/ormolu-action@v2
 ```
 
 However, if you are using a matrix, then it is more efficient to have a
