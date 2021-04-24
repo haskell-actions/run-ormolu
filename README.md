@@ -3,7 +3,10 @@
 ![CI](https://github.com/mrkkrp/ormolu-action/workflows/CI/badge.svg?branch=master)
 
 This is Ormolu action that helps to ensure that your Haskell project is
-formatted with [Ormolu][ormolu].
+formatted with [Ormolu][ormolu]. The action tries to find all Haskell source
+code files in your repository and fails if any of them is not formatted. In
+case of failure it prints the diff between the actual contents of the file
+and its formatted version.
 
 ## Inputs
 
