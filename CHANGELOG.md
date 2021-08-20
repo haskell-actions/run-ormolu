@@ -1,3 +1,7 @@
+## Ormolu action v3
+
+* Uses Ormolu 0.2.0.0.
+
 ## Ormolu action v2
 
 * Fixed the issue with the action hanging when the glob patterns match no
