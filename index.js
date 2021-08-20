@@ -6,7 +6,7 @@ const tool_cache = require('@actions/tool-cache');
 const exec = require('@actions/exec');
 const glob = require('@actions/glob');
 
-const ormolu_version = '0.1.4.1';
+const ormolu_version = '0.2.0.0';
 const ormolu_linux_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-Linux';
 const ormolu_windows_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-Windows';
 const ormolu_macos_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-macOS';
