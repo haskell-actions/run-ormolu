@@ -12,7 +12,10 @@ and its formatted version.
 
 * `pattern` Glob pattern that are used to find source files to format. It is
   possible to specify several patterns by putting each on a new line.
-* `follow-symbolic-links` Whether to follow symbolic links.
+* `respect-cabal-files` Whether to try to locate Cabal files and take into
+  account their `default-extensions` and `default-language` settings
+  (default: true).
+* `follow-symbolic-links` Whether to follow symbolic links (default: true).
 * `extra-args` Extra arguments to pass to Ormolu.
 
 ## Example usage

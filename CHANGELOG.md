@@ -1,3 +1,8 @@
+## Ormolu action v4
+
+* Uses Ormolu 0.3.0.1.
+* Added the new optional input `respect-cabal-files`.
+
 ## Ormolu action v3
 
 * Uses Ormolu 0.2.0.0.
