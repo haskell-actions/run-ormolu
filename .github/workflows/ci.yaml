@@ -15,4 +15,4 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
-      - uses: mrkkrp/ormolu-action@master
+      - uses: mrkkrp/ormolu-action@ormolu-0.3.0.0

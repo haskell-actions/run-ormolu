@@ -9,6 +9,12 @@ inputs:
     default: |
       **/*.hs
       **/*.hs-boot
+  respect-cabal-files:
+    required: false
+    description: >
+      Whether to try to locate Cabal files and take into account their
+      default-extensions and default-language settings.
+    default: true
   follow-symbolic-links:
     required: false
     description: >
