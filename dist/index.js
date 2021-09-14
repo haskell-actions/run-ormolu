@@ -46,7 +46,8 @@ async function run() {
 
     // Unpack the archive
 
-    const ormolu_extracted_dir = tool_cache.extractZip(ormolu_archive);
+    const ormolu_extracted_dir = process.env['RUNNER_TEMP'];
+    await tool_cache.extractZip(ormolu_archive, ormolu_extracted_dir);
     const ormolu_extracted_path = path__WEBPACK_IMPORTED_MODULE_0__.join(ormolu_extracted_dir, 'ormolu');
 
     // Cache ormolu executable
