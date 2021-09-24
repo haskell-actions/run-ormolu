@@ -18,6 +18,17 @@ and its formatted version.
 * `follow-symbolic-links` Whether to follow symbolic links (default: true).
 * `extra-args` Extra arguments to pass to Ormolu.
 
+## Windows
+
+If you are running a workflow on Windows, be wary of [Git's
+`core.autocrlf`][git-core-autocrlf]. Ormolu always converts CRLF endings to
+LF endings which may result in spurious diffs, so you probably want to
+disable `core.autocrlf`:
+
+```shell
+$ git config --global core.autocrlf false
+```
+
 ## Example usage
 
 In the simple case all you need to do is to add this step to your job:
@@ -46,3 +57,4 @@ Here, the `build` job depends on `ormolu` and will not run unless `ormolu`
 passes.
 
 [ormolu]: https://github.com/tweag/ormolu
+[git-core-autocrlf]: https://www.git-scm.com/docs/git-config#Documentation/git-config.txt-coreautocrlf
