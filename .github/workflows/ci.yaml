@@ -21,4 +21,4 @@ jobs:
         if: runner.os == 'Windows'
         run: git config --global core.autocrlf false
       - uses: actions/checkout@v2
-      - uses: mrkkrp/ormolu-action@master
+      - uses: ./.
