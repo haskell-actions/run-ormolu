@@ -37,12 +37,12 @@ async function run() {
 
     const ormolu_extracted_dir = process.env['RUNNER_TEMP'];
     await tool_cache.extractZip(ormolu_archive, ormolu_extracted_dir);
-    const ormolu_extracted_path = path.join(ormolu_extracted_dir, 'ormolu');
+    // const ormolu_extracted_path = path.join(ormolu_extracted_dir, 'ormolu');
 
     // Cache ormolu executable
 
     const ormolu_cached_dir = await tool_cache.cacheDir(
-        ormolu_extracted_path,
+        ormolu_extracted_dir,
         'ormolu',
         ormolu_version
     );
