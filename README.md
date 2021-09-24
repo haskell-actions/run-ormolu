@@ -23,7 +23,7 @@ and its formatted version.
 In the simple case all you need to do is to add this step to your job:
 
 ```yaml
-- uses: mrkkrp/ormolu-action@v3
+- uses: mrkkrp/ormolu-action@v4
 ```
 
 However, if you are using a matrix, then it is more efficient to have a
@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: mrkkrp/ormolu-action@v3
+      - uses: mrkkrp/ormolu-action@v4
   build:
     runs-on: ubuntu-latest
     needs: ormolu
