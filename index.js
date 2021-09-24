@@ -41,9 +41,8 @@ async function run() {
 
     // Cache ormolu executable
 
-    const ormolu_cached_dir = await tool_cache.cacheFile(
+    const ormolu_cached_dir = await tool_cache.cacheDir(
         ormolu_extracted_path,
-        'ormolu',
         'ormolu',
         ormolu_version
     );
