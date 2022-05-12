@@ -6,7 +6,7 @@ const tool_cache = require('@actions/tool-cache');
 const exec = require('@actions/exec');
 const glob = require('@actions/glob');
 
-const ormolu_version = '0.4.0.0';
+const ormolu_version = '0.5.0.0';
 const ormolu_linux_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-Linux.zip';
 const ormolu_windows_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-Windows.zip';
 const ormolu_macos_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-macOS.zip';
@@ -74,8 +74,8 @@ async function run() {
 
     var respect_cabal_files = [];
 
-    if (input_respect_cabal_files) {
-        respect_cabal_files = ['--cabal-default-extensions'];
+    if (!(input_respect_cabal_files)) {
+        respect_cabal_files = ['--no-cabal'];
     }
 
     // Run ormolu

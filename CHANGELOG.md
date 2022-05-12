@@ -1,3 +1,7 @@
+## Ormolu action v6
+
+* Uses Ormolu 0.5.0.0.
+
 ## Ormolu action v5
 
 * Uses Ormolu 0.4.0.0.
