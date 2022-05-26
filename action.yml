@@ -1,5 +1,5 @@
-name: 'ormolu-action'
-description: 'Check formatting of Haskell code with Ormolu'
+name: 'fourmolu-action'
+description: 'Check formatting of Haskell code with Fourmolu'
 inputs:
   pattern:
     required: false
@@ -23,7 +23,7 @@ inputs:
   extra-args:
     required: false
     description: >
-      Extra arguments to pass to Ormolu.
+      Extra arguments to pass to Fourmolu.
 runs:
   using: 'node12'
   main: 'dist/index.js'

@@ -1,7 +1,7 @@
 {
   "name": "ormolu-action",
   "version": "1.0.0",
-  "description": "Check formatting of Haskell code with Ormolu.",
+  "description": "Check formatting of Haskell code with Fourmolu.",
   "main": "index.js",
   "scripts": {
     "prepare": "ncc build index.js -o dist",
@@ -9,13 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mrkkrp/ormolu-action.git"
+    "url": "git+https://github.com/bitnomial/fourmolu-action.git"
   },
   "keywords": [
     "foramtter",
     "haskell"
   ],
-  "author": "Mark Karpov",
+  "author": "original: Mark Karpov, fourmolu port: Bitnomial",
   "license": "BSD 3 clause",
   "dependencies": {
     "@actions/core": "^1.2.6",
@@ -26,10 +26,10 @@
     "@vercel/ncc": "^0.24.1"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.24.0"
+    "@vercel/ncc": "^0.24.1"
   },
   "bugs": {
-    "url": "https://github.com/mrkkrp/ormolu-action/issues"
+    "url": "https://github.com/bitnomial/fourmolu-action/issues"
   },
-  "homepage": "https://github.com/mrkkrp/ormolu-action#readme"
+  "homepage": "https://github.com/bitnomial/fourmolu-action#readme"
 }
