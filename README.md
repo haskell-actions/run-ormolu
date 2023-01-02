@@ -10,8 +10,9 @@ and its formatted version.
 
 ## Inputs
 
-* `pattern` Glob pattern that are used to find source files to format. It is
-  possible to specify several patterns by putting each on a new line.
+* `pattern` Glob patterns that are used to find source files to format. It
+  is possible to specify several patterns by putting [each on a new
+  line][multiple-patterns-example].
 * `respect-cabal-files` Whether to try to locate Cabal files and take into
   account their `default-extensions` and `default-language` settings
   (default: true).
@@ -57,4 +58,5 @@ Here, the `build` job depends on `ormolu` and will not run unless `ormolu`
 passes.
 
 [ormolu]: https://github.com/tweag/ormolu
+[multiple-patterns-example]: https://github.com/mrkkrp/ormolu-action/blob/master/action.yml#L9-L11
 [git-core-autocrlf]: https://www.git-scm.com/docs/git-config#Documentation/git-config.txt-coreautocrlf
