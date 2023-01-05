@@ -25,5 +25,5 @@ inputs:
     description: >
       Extra arguments to pass to Ormolu.
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
