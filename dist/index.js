@@ -17,7 +17,7 @@ const tool_cache = __webpack_require__(7784);
 const exec = __webpack_require__(1514);
 const glob = __webpack_require__(8090);
 
-const ormolu_version = '0.5.2.0';
+const ormolu_version = '0.5.3.0';
 const ormolu_linux_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-Linux.zip';
 const ormolu_windows_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-Windows.zip';
 const ormolu_macos_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-macOS.zip';
