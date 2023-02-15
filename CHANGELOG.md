@@ -1,3 +1,8 @@
+## Unreleased
+
+* Added the `version` input which allows the user to select the Ormolu
+  version explicitly. It defaults to the latest version known.
+
 ## Ormolu action v10
 
 * Uses Ormolu 0.5.3.0.

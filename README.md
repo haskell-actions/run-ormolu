@@ -18,6 +18,7 @@ and its formatted version.
   (default: true).
 * `follow-symbolic-links` Whether to follow symbolic links (default: true).
 * `extra-args` Extra arguments to pass to Ormolu.
+* `version` The version number of Ormolu to use. Defaults to `"latest"`.
 
 ## Windows
 
