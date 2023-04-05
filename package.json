@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mrkkrp/ormolu-action.git"
+    "url": "git+https://github.com/haskell-actions/run-ormolu.git"
   },
   "keywords": [
     "foramtter",
@@ -29,7 +29,7 @@
     "@vercel/ncc": "^0.24.0"
   },
   "bugs": {
-    "url": "https://github.com/mrkkrp/ormolu-action/issues"
+    "url": "https://github.com/haskell-actions/run-ormolu/issues"
   },
-  "homepage": "https://github.com/mrkkrp/ormolu-action#readme"
+  "homepage": "https://github.com/haskell-actions/run-ormolu#readme"
 }
