@@ -1,3 +1,7 @@
+## Ormolu action v12
+
+* Uses Ormolu 0.7.0.0 as the latest version.
+
 ## Ormolu action v11
 
 * Added the `version` input which allows the user to select the Ormolu
