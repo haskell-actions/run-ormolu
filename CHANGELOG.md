@@ -1,3 +1,7 @@
+## Ormolu action v13
+
+* Uses Ormolu 0.7.1.0 as the latest version.
+
 ## Ormolu action v12
 
 * Uses Ormolu 0.7.0.0 as the latest version.
