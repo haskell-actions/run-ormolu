@@ -17,6 +17,8 @@ and its formatted version.
   account their `default-extensions` and `default-language` settings
   (default: true).
 * `follow-symbolic-links` Whether to follow symbolic links (default: true).
+* `mode` Specifies whether to simply `"check"` files for formatting, or
+  modify the files `"inplace"`.
 * `extra-args` Extra arguments to pass to Ormolu.
 * `version` The version number of Ormolu to use. Defaults to `"latest"`.
 
@@ -61,3 +63,21 @@ passes.
 [ormolu]: https://github.com/tweag/ormolu
 [multiple-patterns-example]: https://github.com/haskell-actions/run-ormolu/blob/master/action.yml#L9-L11
 [git-core-autocrlf]: https://www.git-scm.com/docs/git-config#Documentation/git-config.txt-coreautocrlf
+
+## Example which commits the formatted files:
+
+```yaml
+jobs:
+  ormolu:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: haskell-actions/run-ormolu@v14
+        with:
+          mode: inplace
+      - name: apply formatting changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        if: ${{ always() }}
+        with:
+          commit_message: automated ormolu commit
+```

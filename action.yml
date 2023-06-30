@@ -20,6 +20,11 @@ inputs:
     description: >
       Whether to follow symbolic links.
     default: true
+  mode:
+    required: false
+    description: >
+      Mode of operation: 'stdout', 'inplace', or 'check' (the default).
+    default: 'check'
   extra-args:
     required: false
     description: >
