@@ -15,6 +15,7 @@ const ormolu_macos_url = 'https://github.com/tweag/ormolu/releases/download/' + 
 const input_pattern = core.getInput('pattern');
 const input_respect_cabal_files = core.getInput('respect-cabal-files').toUpperCase() !== 'FALSE';
 const input_follow_symbolic_links = core.getInput('follow-symbolic-links').toUpperCase() !== 'FALSE';
+const input_mode = core.getInput('mode').toLowerCase();
 const input_extra_args = core.getInput('extra-args');
 
 async function run() {
@@ -86,7 +87,7 @@ async function run() {
     if (files.length > 0) {
         await exec.exec(
             ormolu_cached_path,
-            ['--color', 'always', '--check-idempotence', '--mode', 'check']
+            ['--color', 'always', '--check-idempotence', '--mode', input_mode]
                 .concat(respect_cabal_files)
                 .concat(extra_args)
                 .concat(files)
