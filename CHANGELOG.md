@@ -1,3 +1,8 @@
+## Ormolu action v14
+
+* Added the `mode` input. [PR
+  29](https://github.com/haskell-actions/run-ormolu/pull/29).
+
 ## Ormolu action v13
 
 * Uses Ormolu 0.7.1.0 as the latest version.
