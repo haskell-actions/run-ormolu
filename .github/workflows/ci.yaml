@@ -20,5 +20,5 @@ jobs:
       - name: Disable core.autocrlf on Windows
         if: runner.os == 'Windows'
         run: git config --global core.autocrlf false
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.
