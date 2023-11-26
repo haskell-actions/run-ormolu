@@ -12,7 +12,7 @@ and its formatted version.
 
 * `pattern` Glob patterns that are used to find source files to format. It
   is possible to specify several patterns by putting [each on a new
-  line][multiple-patterns-example].
+  line][multiple-patterns-example] (notice no quotes around the globs).
 * `respect-cabal-files` Whether to try to locate Cabal files and take into
   account their `default-extensions` and `default-language` settings
   (default: true).
