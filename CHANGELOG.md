@@ -1,3 +1,7 @@
+## Ormolu action v15
+
+* Uses Ormolu 0.7.4.0 as the latest version.
+
 ## Ormolu action v14
 
 * Added the `mode` input. [PR
