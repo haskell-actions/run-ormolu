@@ -1,3 +1,8 @@
+## Ormolu action v16
+
+* Uses Ormolu 0.7.7.0 as the latest version. On MacOS runners aarch64
+  version of Ormolu will be used.
+
 ## Ormolu action v15
 
 * Uses Ormolu 0.7.4.0 as the latest version.
