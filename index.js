@@ -7,10 +7,10 @@ const exec = require('@actions/exec');
 const glob = require('@actions/glob');
 
 const input_version = core.getInput('version');
-const ormolu_version = input_version === 'latest' ? '0.7.4.0' : input_version;
-const ormolu_linux_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-Linux.zip';
-const ormolu_windows_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-Windows.zip';
-const ormolu_macos_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-macOS.zip';
+const ormolu_version = input_version === 'latest' ? '0.7.7.0' : input_version;
+const ormolu_linux_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-x86_64-linux.zip';
+const ormolu_windows_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-x86_64-windows.zip';
+const ormolu_darwin_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-aarch64-darwin.zip';
 
 const input_pattern = core.getInput('pattern');
 const input_respect_cabal_files = core.getInput('respect-cabal-files').toUpperCase() !== 'FALSE';
@@ -29,7 +29,7 @@ async function run() {
         ormolu_archive = await tool_cache.downloadTool(ormolu_windows_url);
     }
     else if (process.platform === 'darwin') {
-        ormolu_archive = await tool_cache.downloadTool(ormolu_macos_url);
+        ormolu_archive = await tool_cache.downloadTool(ormolu_darwin_url);
     }
     else {
         ormolu_archive = await tool_cache.downloadTool(ormolu_linux_url);
