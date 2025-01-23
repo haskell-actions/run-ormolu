@@ -7,7 +7,7 @@ const exec = require('@actions/exec');
 const glob = require('@actions/glob');
 
 const input_version = core.getInput('version');
-const ormolu_version = input_version === 'latest' ? '0.7.7.0' : input_version;
+const ormolu_version = input_version === 'latest' ? '0.8.0.0' : input_version;
 const ormolu_linux_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-x86_64-linux.zip';
 const ormolu_windows_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-x86_64-windows.zip';
 const ormolu_darwin_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-aarch64-darwin.zip';
