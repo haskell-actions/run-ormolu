@@ -1,6 +1,6 @@
 # Ormolu action
 
-![CI](https://github.com/mrkkrp/ormolu-action/workflows/CI/badge.svg?branch=master)
+[![CI](https://github.com/haskell-actions/run-ormolu/actions/workflows/ci.yaml/badge.svg)](https://github.com/haskell-actions/run-ormolu/actions/workflows/ci.yaml)
 
 This is Ormolu action that helps to ensure that your Haskell project is
 formatted with [Ormolu][ormolu]. The action tries to find all Haskell source
