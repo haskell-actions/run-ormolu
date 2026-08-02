@@ -1,3 +1,15 @@
+## Unpublished
+
+* Rewrote the action in TypeScript (`src/index.ts`), bundled into
+  `dist/index.js` with `ncc`. No change in behavior or inputs.
+* Added a reproducible build with Nix (`flake.nix`): `nix build` produces the
+  bundled `dist/` hermetically, and `nix develop` provides a pinned Node.js
+  dev shell. CI now verifies that the committed `dist/` matches a fresh build.
+* Updated the `@actions/*` dependencies to their current major versions. As
+  a side effect, `@actions/tool-cache` 2.x pulls in `undici`, which
+  increases the size of the bundled `dist/index.js`. This does not affect
+  the action's runtime performance.
+
 ## Ormolu action v20
 
 * Switch to the new official upstream of the project and default to the

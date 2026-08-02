@@ -60,9 +60,41 @@ jobs:
 Here, the `build` job depends on `ormolu` and will not run unless `ormolu`
 passes.
 
+## Development
+
+The action is written in TypeScript (`src/index.ts`) and bundled into a
+single JavaScript file (`dist/index.js`) with [`ncc`][ncc]. The `dist/`
+directory is committed to the repository because the GitHub Actions runner
+executes the bundled output directly.
+
+The build is reproducible with [Nix][nix] (flakes must be enabled):
+
+```shell
+# Enter a dev shell with a pinned Node.js and build the bundle:
+$ nix develop
+$ npm ci
+$ npm run prepare
+
+# Or produce the bundle hermetically without a dev shell:
+$ nix build   # result/dist/ contains the bundle
+```
+
+Whenever you change `src/` or the dependencies, rebuild and commit the
+updated `dist/`. CI verifies that the committed `dist/` matches a fresh
+`nix build`.
+
+If you change dependencies (`package.json` / `package-lock.json`), the
+`npmDepsHash` in `flake.nix` must be updated. Recompute it with:
+
+```shell
+$ nix run nixpkgs#prefetch-npm-deps -- package-lock.json
+```
+
 [ormolu]: https://github.com/mrkkrp/ormolu
 [multiple-patterns-example]: https://github.com/haskell-actions/run-ormolu/blob/master/action.yml#L9-L11
 [git-core-autocrlf]: https://www.git-scm.com/docs/git-config#Documentation/git-config.txt-coreautocrlf
+[ncc]: https://github.com/vercel/ncc
+[nix]: https://nixos.org/
 
 ## Example which commits the formatted files:
 

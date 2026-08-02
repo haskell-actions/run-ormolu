@@ -22,3 +22,16 @@ jobs:
         run: git config --global core.autocrlf false
       - uses: actions/checkout@v7
       - uses: ./.
+  dist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: cachix/install-nix-action@v31
+      - name: Build dist/ with Nix
+        run: nix build
+      - name: Check that committed dist/ is up to date
+        run: |
+          if ! diff -r dist result/dist; then
+            echo "::error::dist/ is out of date. Run 'nix build' and commit the result."
+            exit 1
+          fi

@@ -2,9 +2,11 @@
   "name": "ormolu-action",
   "version": "1.0.0",
   "description": "Check formatting of Haskell code with Ormolu.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "prepare": "ncc build index.js -o dist",
+    "build": "tsc",
+    "package": "ncc build lib/index.js -o dist --source-map --license licenses.txt",
+    "prepare": "npm run build && npm run package",
     "all": "npm run prepare"
   },
   "repository": {
@@ -12,21 +14,21 @@
     "url": "git+https://github.com/haskell-actions/run-ormolu.git"
   },
   "keywords": [
-    "foramtter",
+    "formatter",
     "haskell"
   ],
   "author": "Mark Karpov",
   "license": "BSD 3 clause",
   "dependencies": {
-    "@actions/core": "^1.2.6",
-    "@actions/exec": "^1.0.4",
-    "@actions/github": "^4.0.0",
-    "@actions/glob": "^0.1.0",
-    "@actions/tool-cache": "^1.6.0",
-    "@vercel/ncc": "^0.24.1"
+    "@actions/core": "^1.11.1",
+    "@actions/exec": "^1.1.1",
+    "@actions/glob": "^0.5.0",
+    "@actions/tool-cache": "^2.0.2"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.24.0"
+    "@types/node": "^24.0.0",
+    "@vercel/ncc": "^0.38.3",
+    "typescript": "^5.9.0"
   },
   "bugs": {
     "url": "https://github.com/haskell-actions/run-ormolu/issues"
