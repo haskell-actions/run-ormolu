@@ -60,6 +60,25 @@ jobs:
 Here, the `build` job depends on `ormolu` and will not run unless `ormolu`
 passes.
 
+If you intend to have automatic formatting commits, this snippet may be
+helpful:
+
+```yaml
+jobs:
+  ormolu:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: haskell-actions/run-ormolu@v20
+        with:
+          mode: inplace
+      - name: apply formatting changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        if: ${{ always() }}
+        with:
+          commit_message: automated ormolu commit
+```
+
 ## Development
 
 The action is written in TypeScript (`src/index.ts`) and bundled into a
@@ -95,21 +114,3 @@ $ nix run nixpkgs#prefetch-npm-deps -- package-lock.json
 [git-core-autocrlf]: https://www.git-scm.com/docs/git-config#Documentation/git-config.txt-coreautocrlf
 [ncc]: https://github.com/vercel/ncc
 [nix]: https://nixos.org/
-
-## Example which commits the formatted files:
-
-```yaml
-jobs:
-  ormolu:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2
-      - uses: haskell-actions/run-ormolu@v14
-        with:
-          mode: inplace
-      - name: apply formatting changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        if: ${{ always() }}
-        with:
-          commit_message: automated ormolu commit
-```
