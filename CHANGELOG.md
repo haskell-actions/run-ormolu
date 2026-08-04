@@ -1,4 +1,4 @@
-## Unpublished
+## Ormolu action v21
 
 * Rewrote the action in TypeScript (`src/index.ts`), bundled into
   `dist/index.js` with `ncc`. No change in behavior or inputs.

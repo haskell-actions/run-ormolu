@@ -38,7 +38,7 @@ $ git config --global core.autocrlf false
 In the simple case all you need to do is to add this step to your job:
 
 ```yaml
-- uses: haskell-actions/run-ormolu@v20
+- uses: haskell-actions/run-ormolu@v21
 ```
 
 However, if you are using a matrix, then it is more efficient to have a
@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: haskell-actions/run-ormolu@v20
+      - uses: haskell-actions/run-ormolu@v21
   build:
     runs-on: ubuntu-latest
     needs: ormolu
@@ -69,7 +69,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - uses: haskell-actions/run-ormolu@v20
+      - uses: haskell-actions/run-ormolu@v21
         with:
           mode: inplace
       - name: apply formatting changes
